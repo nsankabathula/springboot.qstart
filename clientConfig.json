@@ -1,0 +1,56 @@
+[
+  {
+    "clientId": "5b54a5715261ae504df273be",
+    "fileName": "data",
+    "delimeter": "|",
+    "fileFormat": "DELIMETED",
+    "clientConfigColumns": [
+      {
+        "columnName": "cusip",
+        "beginIndex": 1,
+        "endIndex": 3
+      },
+      {
+        "columnName": "balance",
+        "beginIndex": 1,
+        "endIndex": 5
+      }
+    ]
+  },
+  {
+    "clientId": "5b54a571a09c73aa5daf25ac",
+    "fileName": "a",
+    "delimeter": "|",
+    "fileFormat": "FIXED",
+    "clientConfigColumns": [
+      {
+        "columnName": "cusip",
+        "beginIndex": 1,
+        "endIndex": 5
+      },
+      {
+        "columnName": "balance",
+        "beginIndex": 3,
+        "endIndex": 6
+      }
+    ]
+  },
+  {
+    "clientId": "5b54a5713792f7a674af903f",
+    "fileName": "c",
+    "delimeter": ",",
+    "fileFormat": "FIXED",
+    "clientConfigColumns": [
+      {
+        "columnName": "balance",
+        "beginIndex": 2,
+        "endIndex": 4
+      },
+      {
+        "columnName": "cusip",
+        "beginIndex": 3,
+        "endIndex": 3
+      }
+    ]
+  }
+]

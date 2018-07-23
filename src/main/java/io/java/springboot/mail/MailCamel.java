@@ -26,9 +26,9 @@ public class MailCamel {
 
     public MailCamel(){
         //System.out.println("in MailCamel constructor" + messages.toString());
-        service = new ExchangeService(ExchangeVersion.Exchange2010_SP1.Exchange2010_SP2);
-        ExchangeCredentials credentials = new WebCredentials("xxx", "xxx");
-        service.setCredentials(credentials);
+        //service = new ExchangeService(ExchangeVersion.Exchange2010_SP1.Exchange2010_SP2);
+        //ExchangeCredentials credentials = new WebCredentials("xxx", "xxx");
+        //service.setCredentials(credentials);
 
 
     }

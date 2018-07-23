@@ -9,19 +9,23 @@
         <to uri="bean:mailCamel?method=hello(${body})"></to>
 
 
-       <to uri="direct:mailCamel" />
-       <log message="trigger: ${body}"/>
+       <!--<to uri="direct:mailCamel1" />-->
+      <log message="trigger: ${body}"/>
 
    </route>
+
+
 
     <!--<route id="gmail">
         <from uri="imaps://username@imap.gmail.com?password=xxxxxx&amp;unseen=true&amp;consumer.delay=60000"/>
         <to uri="log:out"/>
     </route>
     -->
-    <route  id="mailCamel">
-        <from uri="direct:mailCamel"/>
+    <!--
+    <route  id="mailCamelID">
+        <from uri="direct:mailCamel1"/>
         <to uri="bean:mailCamel?method=toString"></to>
-        <!--<log message="mailCamel ${body}"/>-->
+        <log message="mailCamel log ${body}"/>
     </route>
+    -->
 </routes>
