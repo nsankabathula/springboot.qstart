@@ -1,15 +1,12 @@
-package io.java.springboot.hello;
+package io.java.springboot.config;
 
 
-import io.java.springboot.mail.MailCamel;
-import org.apache.camel.Exchange;
-import org.apache.camel.Message;
-import org.apache.camel.Processor;
-import org.apache.camel.builder.RouteBuilder;
+import io.java.springboot.parser.FlatPackParser;
+import org.apache.camel.spring.SpringRouteBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TimerRoute extends RouteBuilder {
+public class TimerRoute extends SpringRouteBuilder {
 
     public static final String ROUTE_NAME = "TIMER_ROUTE";
 
@@ -17,13 +14,13 @@ public class TimerRoute extends RouteBuilder {
     public void configure() throws Exception {
 
         from("file://data?noop=true")
-                .process(new SampleTransformer())
-                //.to("bean:mailCamel?method=hello(${body})")
+                .process(new FlatPackParser())
+                //.to("bean:mailCamel?method=config(${body})")
                 .to("log:fileLog");
 /*
 from("file://inbox?move=.done").to("bean:handleOrder");
         from("timer:initial//start?period=10000")
-                //.bean(MailCamel.class, "hello(text)")
+                //.bean(MailCamel.class, "config(text)")
                 .process(new Processor() {
                     public void process(Exchange exchange)
 

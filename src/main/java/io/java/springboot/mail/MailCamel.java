@@ -40,7 +40,7 @@ public class MailCamel {
         //service.autodiscoverUrl("Naveen.Sankabathula@riskcare.com", new RedirectionUrlCallback ());
 
         //Folder inbox = Folder.bind(service, WellKnownFolderName.Inbox);
-        //System.out.println(" in hello " + messages.toString() + inbox.getTotalCount());
+        //System.out.println(" in config " + messages.toString() + inbox.getTotalCount());
         //messages.add(inbox.getTotalCount());
         /*
         Collection<Conversation> conversations = service.findConversation(

@@ -1,31 +1,49 @@
-
-<routes xmlns="http://camel.apache.org/schema/spring">
-
-   <route id="trigger">
-        <from uri="timer://trigger?period=15000"/>
-       <setBody>
-           <simple>{'firedTime': ${header.firedTime}}</simple>
-       </setBody>
-        <to uri="bean:mailCamel?method=hello(${body})"></to>
-
-
-       <!--<to uri="direct:mailCamel1" />-->
-      <log message="trigger: ${body}"/>
-
-   </route>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/spring
+       http://camel.apache.org/schema/spring/camel-spring.xsd"
+>
 
 
+    <camelContext id="camel-route-builder" xmlns="http://camel.apache.org/schema/spring">
+        <jmxAgent id="agent" disabled="true"/>
+        <routeBuilder ref="timerRoute"/>
+        <!--<routeBuilder ref="fixedParser"/>-->
 
-    <!--<route id="gmail">
-        <from uri="imaps://username@imap.gmail.com?password=xxxxxx&amp;unseen=true&amp;consumer.delay=60000"/>
-        <to uri="log:out"/>
-    </route>
-    -->
-    <!--
-    <route  id="mailCamelID">
-        <from uri="direct:mailCamel1"/>
-        <to uri="bean:mailCamel?method=toString"></to>
-        <log message="mailCamel log ${body}"/>
-    </route>
-    -->
-</routes>
+        <route id="trigger">
+            <from uri="timer://trigger?period=15000"/>
+            <setBody>
+                <simple>{'firedTime': ${header.firedTime}}</simple>
+            </setBody>
+            <to uri="bean:mailCamel?method=hello(${body})"></to>
+
+
+            <to uri="direct:mailCamel1" />
+            <!--<log message="trigger: ${body}"/>-->
+
+        </route>
+
+
+
+        <!--<route id="gmail">
+            <from uri="imaps://username@imap.gmail.com?password=xxxxxx&amp;unseen=true&amp;consumer.delay=60000"/>
+            <to uri="log:out"/>
+        </route>
+        -->
+
+        <route  id="mailCamelID">
+            <from uri="direct:mailCamel1"/>
+            <to uri="bean:mailCamel?method=toString"></to>
+            <log message="mailCamel log ${body}"/>
+        </route>
+
+    </camelContext>
+
+    <!--<import resource="classpath*:camel/camel-routes.xml"/>-->
+
+
+</beans>

@@ -1,10 +1,9 @@
-package io.java.springboot.hello;
+package io.java.springboot.config;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -55,6 +54,8 @@ public class ClientConfig {
     public void setClientConfigColumns(List<ClientConfigColumn> clientConfigColumns) {
         this.clientConfigColumns = clientConfigColumns;
     }
+
+
 
     public String getClientId() {
         return clientId;

@@ -1,5 +1,6 @@
-package io.java.springboot.hello;
+package io.java.springboot.parser;
 
+import io.java.springboot.config.ClientConfig;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 

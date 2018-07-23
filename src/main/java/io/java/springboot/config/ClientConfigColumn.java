@@ -1,35 +1,47 @@
-package io.java.springboot.hello;
+package io.java.springboot.config;
+
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Created by Naveen on 7/22/18.
  */
+@XmlRootElement
 public class ClientConfigColumn {
     String columnName;
-    int beginIndex;
-    int endIndex;
+    Long beginIndex;
+    Long endIndex;
 
-    public int getBeginIndex() {
+    @XmlAttribute
+    public Long getBeginIndex() {
         return beginIndex;
     }
 
+    @XmlAttribute
     public String getColumnName() {
         return columnName;
     }
+
 
     public void setColumnName(String columnName) {
         this.columnName = columnName;
     }
 
-    public int getEndIndex() {
+    @XmlAttribute
+    public Long getEndIndex() {
         return endIndex;
     }
 
-    public void setEndIndex(int endIndex) {
+    public void setEndIndex(Long endIndex) {
         this.endIndex = endIndex;
     }
 
-    public void setBeginIndex(int beginIndex) {
+    public void setBeginIndex(Long beginIndex) {
         this.beginIndex = beginIndex;
+    }
+
+    public boolean expectedFromSource(){
+        return beginIndex!= null && endIndex != null;
     }
 
     @Override
