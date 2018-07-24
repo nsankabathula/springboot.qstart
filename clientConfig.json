@@ -2,26 +2,26 @@
   {
     "clientId": "5b54a5715261ae504df273be",
     "fileName": "data",
-    "delimeter": "|",
-    "fileFormat": "DELIMETED",
+    "delimiter": "",
+    "fileFormat": "FIXED",
     "clientConfigColumns": [
       {
         "columnName": "cusip",
-        "beginIndex": 1,
-        "endIndex": 3
+        "beginIndex": 0,
+        "endIndex": 4
       },
       {
         "columnName": "balance",
-        "beginIndex": 1,
-        "endIndex": 5
+        "beginIndex": 4,
+        "endIndex": 12
       }
     ]
   },
   {
     "clientId": "5b54a571a09c73aa5daf25ac",
-    "fileName": "a",
-    "delimeter": "|",
-    "fileFormat": "FIXED",
+    "fileName": "file2",
+    "delimiter": "|",
+    "fileFormat": "DELIMIED",
     "clientConfigColumns": [
       {
         "columnName": "cusip",
@@ -32,24 +32,29 @@
         "columnName": "balance",
         "beginIndex": 3,
         "endIndex": 6
+      },
+      {
+        "columnName": "abc",
+        "beginIndex": null,
+        "endIndex": null
       }
     ]
   },
   {
     "clientId": "5b54a5713792f7a674af903f",
-    "fileName": "c",
-    "delimeter": ",",
-    "fileFormat": "FIXED",
+    "fileName": "file3",
+    "delimiter": ",",
+    "fileFormat": "DELIMIED",
     "clientConfigColumns": [
       {
         "columnName": "balance",
         "beginIndex": 2,
-        "endIndex": 4
+        "endIndex": null
       },
       {
         "columnName": "cusip",
         "beginIndex": 3,
-        "endIndex": 3
+        "endIndex": null
       }
     ]
   }

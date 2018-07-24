@@ -2,11 +2,12 @@ package io.java.springboot.config;
 
 
 import io.java.springboot.parser.FlatPackParser;
+import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.spring.SpringRouteBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TimerRoute extends SpringRouteBuilder {
+public class TimerRoute extends RouteBuilder {
 
     public static final String ROUTE_NAME = "TIMER_ROUTE";
 

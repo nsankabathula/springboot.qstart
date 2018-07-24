@@ -13,4 +13,15 @@
 
     <import resource="classpath*:camel/camel-context.xml"/>
 
+    <bean id="castorMarshaller" class="org.springframework.oxm.castor.CastorMarshaller" >
+        <property name="mappingLocation" value="classpath:mapping.xml" />
+
+    </bean>
+
+
+    <bean id="XmlConverter" class="io.java.springboot.config.XMLConverter">
+        <property name="marshaller" ref="castorMarshaller" />
+        <property name="unmarshaller" ref="castorMarshaller" />
+    </bean>
+
 </beans>

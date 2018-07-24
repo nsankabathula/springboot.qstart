@@ -18,14 +18,15 @@ import java.util.stream.Collectors;
 public class ClientConfig {
 
 
-    static final String DELIMETER_FILE_FORMAT = "DELIMETER";
+    static final String DELIMITER_FILE_FORMAT = "DELIMIED";
     static final String FIXED_FILE_FORMAT = "FIXED";
     static final String TEMP_CLIENT_CONFIGS_FILE_NAME = "clientConfig.json";
+    static final String FOLDER_PATH = "configs/";
 
     String clientId;
     String fileName;
     String fileFormat;
-    String delimeter;
+    String delimiter;
 
     public ClientConfig() {
 
@@ -40,10 +41,10 @@ public class ClientConfig {
 
 
     public boolean isFixed(){
-        return fileFormat == ClientConfig.FIXED_FILE_FORMAT;
+        return ClientConfig.FIXED_FILE_FORMAT.equals(fileFormat);
     }
-    public boolean isDelimeted(){
-        return fileFormat == ClientConfig.DELIMETER_FILE_FORMAT;
+    public boolean isDelimited(){
+        return ClientConfig.DELIMITER_FILE_FORMAT.equals(fileFormat);
     }
 
 
@@ -53,6 +54,10 @@ public class ClientConfig {
 
     public void setClientConfigColumns(List<ClientConfigColumn> clientConfigColumns) {
         this.clientConfigColumns = clientConfigColumns;
+    }
+
+    public String getXMLConfigPath(){
+        return FOLDER_PATH + clientId + ".xml";
     }
 
 
@@ -65,12 +70,12 @@ public class ClientConfig {
         this.clientId = clientId;
     }
 
-    public String getDelimeter() {
-        return delimeter;
+    public String getDelimiter() {
+        return delimiter;
     }
 
-    public void setDelimeter(String delimeter) {
-        this.delimeter = delimeter;
+    public void setDelimiter(String delimiter) {
+        this.delimiter = delimiter;
     }
 
     public String getFileFormat() {
@@ -112,7 +117,7 @@ public class ClientConfig {
                 ", clientId='" + clientId + '\'' +
                 ", fileName='" + fileName + '\'' +
                 ", fileFormat='" + fileFormat + '\'' +
-                ", delimeter='" + delimeter + '\'' +
+                ", delimiter='" + delimiter + '\'' +
                 '}';
     }
 }

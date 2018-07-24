@@ -11,9 +11,12 @@
 
     <camelContext id="camel-route-builder" xmlns="http://camel.apache.org/schema/spring">
         <jmxAgent id="agent" disabled="true"/>
-        <routeBuilder ref="timerRoute"/>
+        <!--<routeBuilder ref="timerRoute"/>-->
+        <routeBuilder ref="camelScheduler"/>
+
         <!--<routeBuilder ref="fixedParser"/>-->
 
+        <!--
         <route id="trigger">
             <from uri="timer://trigger?period=15000"/>
             <setBody>
@@ -23,23 +26,20 @@
 
 
             <to uri="direct:mailCamel1" />
-            <!--<log message="trigger: ${body}"/>-->
+
 
         </route>
+    -->
 
 
 
-        <!--<route id="gmail">
-            <from uri="imaps://username@imap.gmail.com?password=xxxxxx&amp;unseen=true&amp;consumer.delay=60000"/>
-            <to uri="log:out"/>
-        </route>
-        -->
-
+        <!--
         <route  id="mailCamelID">
             <from uri="direct:mailCamel1"/>
             <to uri="bean:mailCamel?method=toString"></to>
             <log message="mailCamel log ${body}"/>
         </route>
+        -->
 
     </camelContext>
 

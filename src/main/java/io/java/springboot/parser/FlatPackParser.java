@@ -15,11 +15,18 @@ public class FlatPackParser implements Processor {
 
     @Override
     public void process(Exchange exchange) throws Exception {
+        System.out.println(exchange.getIn().getHeaders());
+        /*
         System.out.println(new ClassPathResource("fixed-length.pzmap.xml").getFile() + "{}" +  exchange.getIn().getHeader("CamelFileAbsolutePath").toString());
         String fileName = exchange.getIn().getHeader("CamelFileNameOnly").toString();
         ClientConfig config = ClientConfig.filterByStartsWith(ClientConfig.getDefaultConfig(), fileName) ;
 
-        //call( new ClassPathResource("fixed-length.pzmap.xml").getFile(), exchange.getIn().getHeader("CamelFileAbsolutePath").toString());
+        File fileMapping =//new ClassPathResource("fixed-length.pzmap.xml").getFile();
+                new File("configs/" + config.getFileName() + ".xml");
+        System.out.println(fileMapping.getPath());
+
+        call( fileMapping, exchange.getIn().getHeader("CamelFileAbsolutePath").toString());
+        */
         /*
 
         System.out.println(exchange.getIn().getHeaders()); //CamelFileAbsolutePath

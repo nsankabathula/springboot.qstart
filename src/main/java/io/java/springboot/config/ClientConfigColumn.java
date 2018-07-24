@@ -1,23 +1,22 @@
 package io.java.springboot.config;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 
 /**
  * Created by Naveen on 7/22/18.
  */
-@XmlRootElement
+
 public class ClientConfigColumn {
     String columnName;
     Long beginIndex;
     Long endIndex;
 
-    @XmlAttribute
+
     public Long getBeginIndex() {
         return beginIndex;
     }
 
-    @XmlAttribute
+
     public String getColumnName() {
         return columnName;
     }
@@ -27,7 +26,7 @@ public class ClientConfigColumn {
         this.columnName = columnName;
     }
 
-    @XmlAttribute
+
     public Long getEndIndex() {
         return endIndex;
     }
@@ -42,6 +41,14 @@ public class ClientConfigColumn {
 
     public boolean expectedFromSource(){
         return beginIndex!= null && endIndex != null;
+    }
+
+    public Long getColumnLength(){
+        if (beginIndex == null || endIndex  == null){
+            return 0L;
+        }
+        else
+            return endIndex - beginIndex;
     }
 
     @Override
