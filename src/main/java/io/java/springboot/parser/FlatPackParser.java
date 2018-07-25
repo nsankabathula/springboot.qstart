@@ -6,6 +6,8 @@ import net.sf.flatpack.DefaultParserFactory;
 import net.sf.flatpack.Parser;
 import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
+
+import org.apache.camel.component.flatpack.FlatpackDataFormat;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.File;
@@ -15,7 +17,12 @@ public class FlatPackParser implements Processor {
 
     @Override
     public void process(Exchange exchange) throws Exception {
-        System.out.println(exchange.getIn().getHeaders());
+        System.out.println("in FlatPackParser " );
+        System.out.println(exchange.getIn().getBody()) ;
+        System.out.println(exchange.getIn().getHeaders()) ;
+
+        FlatpackDataFormat fp = new FlatpackDataFormat();
+        //fp.setDefinition();
         /*
         System.out.println(new ClassPathResource("fixed-length.pzmap.xml").getFile() + "{}" +  exchange.getIn().getHeader("CamelFileAbsolutePath").toString());
         String fileName = exchange.getIn().getHeader("CamelFileNameOnly").toString();
@@ -40,6 +47,7 @@ public class FlatPackParser implements Processor {
 
     public static void call(final File mapping, final String data) throws Exception {
         final Parser pzparser = DefaultParserFactory.getInstance().newFixedLengthParser(new FileReader(mapping), new FileReader(data));
+
         pzparser.setIgnoreExtraColumns(true);
 
         final DataSet ds = pzparser.parse();

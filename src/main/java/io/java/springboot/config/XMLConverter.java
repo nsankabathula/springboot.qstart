@@ -11,7 +11,7 @@ import org.springframework.oxm.Marshaller;
 import org.springframework.oxm.Unmarshaller;
 import org.springframework.oxm.castor.CastorMarshaller;
 
-public class XMLConverter {
+public class XMLConverter implements  IConvertor{
 
     private CastorMarshaller marshaller;
     private Unmarshaller unmarshaller;

@@ -5,7 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <properties>
-        <camelVersion>2.12.2</camelVersion>
+        <camel.version>2.12.2</camel.version>
+
     </properties>
 
     <groupId>io.java.springboot</groupId>
@@ -37,22 +38,22 @@
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-core</artifactId>
-            <version>${camelVersion}</version>
+            <version>${camel.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-spring</artifactId>
-            <version>${camelVersion}</version>
+            <version>${camel.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-mail</artifactId>
-            <version>${camelVersion}</version>
+            <version>${camel.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-flatpack</artifactId>
-            <version>${camelVersion}</version>
+            <version>${camel.version}</version>
         </dependency>
 
 

@@ -11,7 +11,7 @@
 
     <camelContext id="camel-route-builder" xmlns="http://camel.apache.org/schema/spring">
         <jmxAgent id="agent" disabled="true"/>
-        <!--<routeBuilder ref="timerRoute"/>-->
+        <routeBuilder ref="configRouteBuilder"/>
         <routeBuilder ref="camelScheduler"/>
 
         <!--<routeBuilder ref="fixedParser"/>-->
