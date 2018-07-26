@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE PZMAP PUBLIC "SYSTEM"
+                       "flatpack.dtd">
+<PZMAP>
+    <COLUMN name="dummy_0" length="1"/>
+    <COLUMN name="cusip" length="2"/>
+    <COLUMN name="dummy_1" length="1"/>
+    <COLUMN name="balance" length="6"/>
+</PZMAP>

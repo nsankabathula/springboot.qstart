@@ -1,7 +1,5 @@
 package io.java.springboot.config;
 
-import javax.xml.bind.annotation.*;
-
 /**
  * Created by Naveen on 7/22/18.
  */
@@ -10,7 +8,42 @@ public class ClientConfigColumn {
     String columnName;
     Long beginIndex;
     Long endIndex;
+    String dataType;
+    Boolean useDefault;
+    Object value;
+    Boolean metaFlag;
 
+    public Boolean getMetaFlag() {
+        return metaFlag;
+    }
+
+    public void setMetaFlag(Boolean metaFlag) {
+        this.metaFlag = metaFlag;
+    }
+
+    public Boolean getUseDefault() {
+        return useDefault;
+    }
+
+    public void setUseDefault(Boolean useDefault) {
+        this.useDefault = useDefault;
+    }
+
+    public Object getValue() {
+        return value;
+    }
+
+    public void setValue(Object value) {
+        this.value = value;
+    }
+
+    public String getDataType() {
+        return dataType;
+    }
+
+    public void setDataType(String dataType) {
+        this.dataType = dataType;
+    }
 
     public Long getBeginIndex() {
         return beginIndex;
@@ -57,6 +90,7 @@ public class ClientConfigColumn {
                 "beginIndex=" + beginIndex +
                 ", columnName='" + columnName + '\'' +
                 ", endIndex=" + endIndex +
+                ", dataType=" + dataType +
                 '}';
     }
 }

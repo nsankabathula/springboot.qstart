@@ -11,7 +11,7 @@
     <!-- enable Spring @Component scan -->
     <context:component-scan base-package ="io.java.springboot"></context:component-scan>
 
-    <bean id="configService" class="io.java.springboot.config.ConfigService"/>
+    <!--<bean id="configService" class="io.java.springboot.config.ConfigService"/>-->
 
     <import resource="classpath*:camel/camel-context.xml"/>
 

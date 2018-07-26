@@ -122,6 +122,8 @@ public class CamelController  {
         }
     }
 
+    /*
+
     @PutMapping("/{route}/start")
     public ResponseEntity<?> start(@PathVariable("route") String route) {
         try {
@@ -163,5 +165,6 @@ public class CamelController  {
     }
 
     }
+    */
 
 }

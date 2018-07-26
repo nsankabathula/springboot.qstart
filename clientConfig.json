@@ -7,13 +7,39 @@
     "clientConfigColumns": [
       {
         "columnName": "cusip",
-        "beginIndex": 0,
-        "endIndex": 4
+        "beginIndex": 1,
+        "endIndex": 3,
+        "dataType": "varchar",
+        "useDefault" : false,
+        "metaFlag": false,
+        "value": null
+      },
+      {
+        "columnName": "metaColumn",
+        "beginIndex": null,
+        "endIndex": null,
+        "dataType": "varchar",
+        "metaFlag": true,
+        "useDefault" : false,
+        "value": null
+      },
+      {
+        "columnName": "defaultC",
+        "beginIndex": null,
+        "endIndex": null,
+        "dataType": "varchar",
+        "metaFlag": true,
+        "useDefault" : true,
+        "value": "default"
       },
       {
         "columnName": "balance",
         "beginIndex": 4,
-        "endIndex": 12
+        "endIndex": 10,
+        "metaFlag": false,
+        "useDefault" : false,
+        "dataType": "number",
+        "value": null
       }
     ]
   },

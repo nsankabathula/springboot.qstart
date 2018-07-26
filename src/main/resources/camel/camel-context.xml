@@ -9,9 +9,9 @@
 >
 
 
-    <camelContext id="camel-route-builder" xmlns="http://camel.apache.org/schema/spring">
+    <camelContext id="camel-route-builder" trace="true" xmlns="http://camel.apache.org/schema/spring">
         <jmxAgent id="agent" disabled="true"/>
-        <routeBuilder ref="configRouteBuilder"/>
+        <!--<routeBuilder ref="configRouteBuilder"/>-->
         <routeBuilder ref="camelScheduler"/>
 
         <!--<routeBuilder ref="fixedParser"/>-->

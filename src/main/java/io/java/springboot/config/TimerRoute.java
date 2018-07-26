@@ -1,9 +1,8 @@
 package io.java.springboot.config;
 
 
-import io.java.springboot.parser.FlatPackParser;
+import io.java.springboot.parser.FixedLengthParser;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.spring.SpringRouteBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,7 +14,7 @@ public class TimerRoute extends RouteBuilder {
     public void configure() throws Exception {
 
         from("file://data?noop=true")
-                .process(new FlatPackParser())
+                .process(new FixedLengthParser())
                 //.to("bean:mailCamel?method=config(${body})")
                 .to("log:fileLog");
 /*

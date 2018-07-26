@@ -39,6 +39,17 @@ public class ConfigController {
         }
     }
 
+    @RequestMapping(value = "/build", method = RequestMethod.PUT)
+    public ResponseEntity<?> put() {
+        try {
+            return ResponseEntity.status(HttpStatus.ACCEPTED).body(configService.writeAllConfigs());
+        }
+        catch (Exception ex)
+        {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+        }
+    }
+
     @RequestMapping(value = "/{fileName}", method = RequestMethod.PUT)
 
     public ResponseEntity<ClientConfig> put(@PathVariable("fileName") String fileName, ClientConfig obj) {
