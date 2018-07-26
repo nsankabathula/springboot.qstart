@@ -52,7 +52,7 @@ public class CamelScheduler extends RouteBuilder{
                 .routeId(String.format( "%s.delimitedFileParser", name))
                 //.processRef("delimitedFileParser")
                 .to("log:DelimitedFileParser")
-                .to ("direct:CsvMarshal")
+                //.to ("direct:CsvMarshal")
                 .end();
 
         CsvDataFormat csv = new CsvDataFormat();
