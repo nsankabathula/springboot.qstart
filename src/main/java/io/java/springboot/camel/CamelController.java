@@ -130,6 +130,7 @@ public class CamelController  {
             if (camelContext.getRouteStatus(route).isStopped()) {
                 System.out.println("Starting route" + route);
                 camelContext.getRoute(route).getEndpoint().start();
+                //producerTemplate.sendBody(camelContext.getRoute(route).getEndpoint(),"start");
                 return ResponseEntity.status(HttpStatus.ACCEPTED).body(camelContext.getRouteStatus(route));
             } else {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(camelContext.getRouteStatus(route));

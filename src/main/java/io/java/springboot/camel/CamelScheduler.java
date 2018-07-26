@@ -15,19 +15,17 @@ public class CamelScheduler extends RouteBuilder{
 
 
         from("file://data?noop=true")
-                .process(new ConfigProcessor())
+                .processRef("configProcessor")
                 //.to("log:afterProcess ${in.header}")
                 .choice()
                     .when(header("isFixed").isEqualTo(true))
-                        //.process(new FlatPackParser())
-                        .to("direct:FlatPackParser" )
+                        .process(new FlatPackParser())
+                        //.to("direct:FlatPackParser" )
                     .otherwise()
                     //.to("bean:mailCamel?method=config(${body})")
                         .to("log:file ${header}");
 
 
-        from("direct:FlatPackParser")
-                .process(new FlatPackParser());
 
     }
 }

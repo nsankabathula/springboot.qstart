@@ -26,7 +26,7 @@ public class ConfigService  {
     }
 
     public ClientConfig getConfigByFileName(String fileNameStartsWith) throws Exception{
-        return ClientConfig.filterByStartsWith(getConfig(), fileNameStartsWith);
+        return ClientConfig.filterByStartsWith(ClientConfig.getDefaultConfig(), fileNameStartsWith);
     }
 
     public List<?> writeAllConfigs() throws Exception{
