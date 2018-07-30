@@ -14,16 +14,42 @@
     <!--<bean id="configService" class="io.java.springboot.config.ConfigService"/>-->
 
     <import resource="classpath*:camel/camel-context.xml"/>
-
+<!--
     <bean id="castorMarshaller" class="org.springframework.oxm.castor.CastorMarshaller" >
         <property name="mappingLocation" value="classpath:mapping.xml" />
+    </bean>
+    -->
+
+    <!--XML Marshaller -->
+    <bean id="jaxbMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+        <property name="classesToBeBound" >
+            <list>
+                <value>io.java.springboot.config.ClientConfigColumns</value>
+            </list>
+        </property>
+        <property name="marshallerProperties">
+            <map>
+                <entry key="jaxb.formatted.output">
+                    <value type="boolean">true</value>
+                </entry>
+                <entry key="jaxb.fragment">
+                    <value type="boolean">true</value>
+                </entry>
+                <entry key="com.sun.xml.internal.bind.xmlHeaders">
+                    <value>&lt;!DOCTYPE PZMAP SYSTEM "flatpack.dtd"&gt;</value>
+            </entry>
+            </map>
+        </property>
 
     </bean>
 
 
+
+
+
     <bean id="XmlConverter" class="io.java.springboot.config.XMLConverter">
-        <property name="marshaller" ref="castorMarshaller" />
-        <property name="unmarshaller" ref="castorMarshaller" />
+        <property name="marshaller" ref="jaxbMarshaller" />
+        <!--<property name="unmarshaller" ref="castorMarshaller" /> we currently don't need it for future implementation-->
     </bean>
 
 </beans>

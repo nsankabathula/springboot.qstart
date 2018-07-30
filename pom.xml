@@ -67,8 +67,14 @@
             <artifactId>ews-java-api</artifactId>
             <version>2.0</version>
         </dependency>
+<!--
 
-
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+-->
         <!-- spring oxm -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -76,19 +82,19 @@
             <version>${spring.version}</version>
         </dependency>
 
-        <!-- Uses Castor for XML -->
+        <!-- Uses Castor for XML
         <dependency>
             <groupId>org.codehaus.castor</groupId>
             <artifactId>castor</artifactId>
             <version>1.2</version>
-        </dependency>
+        </dependency>-->
 
-        <!-- Castor need this -->
+        <!-- Castor need this
         <dependency>
             <groupId>xerces</groupId>
             <artifactId>xercesImpl</artifactId>
             <version>2.8.1</version>
-        </dependency>
+        </dependency>-->
 
     </dependencies>
     <build>

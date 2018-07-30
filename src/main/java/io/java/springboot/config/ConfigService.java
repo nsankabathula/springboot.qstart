@@ -1,15 +1,18 @@
 package io.java.springboot.config;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ResourceUtils;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
 
 @Component
 @Service
@@ -38,11 +41,38 @@ public class ConfigService  {
         System.out.println(fixedConfigs);
         for (ClientConfig config : fixedConfigs){
             configPaths.add(config.writeConfigToFile(xmlConverter));
-
         }
-
         return configPaths;
     }
+
+/* Test
+    public List<?> getClientConfigColumnsForXML() throws Exception{
+        ArrayList<List<ClientConfigColumn> > configPaths = new ArrayList<>();
+        System.out.println("writeAllConfigs");
+        List<ClientConfig> fixedConfigs = ClientConfig.getDefaultConfig().parallelStream().filter(t-> t.isFixed()).collect(Collectors.toList());
+        System.out.println(fixedConfigs);
+        for (ClientConfig config : fixedConfigs){
+            //configPaths.add(config.getClientConfigColumnsForXML());
+
+            //ObjectMapper objectMapper = new XmlMapper();
+            //System.out.println(objectMapper.writeValueAsString(new ClientConfigColumns(config.getClientConfigColumnsForXML())));
+            JAXBContext jaxbContext = JAXBContext.newInstance(ClientConfigColumns.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            jaxbMarshaller.setProperty("com.sun.xml.internal.bind.xmlHeaders",
+                    "\n<!DOCTYPE PZMAP SYSTEM  \"flatpack.dtd\">");//<!DOCTYPE PZMAP SYSTEM	"flatpack.dtd" >
+
+            //Marshal the employees list in console
+            jaxbMarshaller.marshal(new ClientConfigColumns(config.getClientConfigColumnsForXML()), System.out);
+
+            break;
+            //configPaths.add(config.writeConfigToFile(xmlConverter));
+
+        }
+        return configPaths;
+    }
+*/
 
 
     public String writeConfigToFile(String fileNameStartsWith) throws Exception{

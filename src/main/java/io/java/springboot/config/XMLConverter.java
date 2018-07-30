@@ -13,21 +13,14 @@ import org.springframework.oxm.castor.CastorMarshaller;
 
 public class XMLConverter implements  IConvertor{
 
-    private CastorMarshaller marshaller;
+    private Marshaller marshaller;
     private Unmarshaller unmarshaller;
 
     public Marshaller getMarshaller() {
-
-        Map<String, String> doctypes = new HashMap<>();
-        doctypes.put("SYSTEM", "flatpack.dtd");
-        //marshaller.setSupportDtd(true);
-        marshaller.setDoctypes(doctypes);
-        //marshaller.d
-
         return marshaller;
     }
 
-    public void setMarshaller(CastorMarshaller marshaller) {
+    public void setMarshaller(Marshaller marshaller) {
         this.marshaller = marshaller;
     }
 

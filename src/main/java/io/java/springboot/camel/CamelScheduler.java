@@ -19,6 +19,7 @@ public class CamelScheduler extends RouteBuilder{
                 .routeId(String.format( "%s.configBuiilder", name))
                 .tracing()
                 .bean(ConfigService.class, "writeAllConfigs")
+                .to("log:file ${header}")
                 .end();
 
 

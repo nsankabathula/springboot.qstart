@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE PZMAP PUBLIC "SYSTEM"
-                       "flatpack.dtd">
+<!DOCTYPE PZMAP SYSTEM "flatpack.dtd">
 <PZMAP>
     <COLUMN name="dummy_0" length="1"/>
     <COLUMN name="cusip" length="2"/>

@@ -1,16 +1,39 @@
 package io.java.springboot.config;
 
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlTransient;
+
 /**
  * Created by Naveen on 7/22/18.
  */
 
+
+@XmlAccessorType(XmlAccessType.FIELD)
+
 public class ClientConfigColumn {
+
+    @XmlAttribute(name = "name")
     String columnName;
+
+    @XmlTransient
     Long beginIndex;
+
+    @XmlTransient
     Long endIndex;
+
+    @XmlTransient
     String dataType;
+
+    @XmlTransient
     Boolean useDefault;
+
+    @XmlTransient
     Object value;
+
+    @XmlTransient
     Boolean metaFlag;
 
     public Boolean getMetaFlag() {
@@ -76,6 +99,7 @@ public class ClientConfigColumn {
         return beginIndex!= null && endIndex != null;
     }
 
+    @XmlAttribute(name = "length")
     public Long getColumnLength(){
         if (beginIndex == null || endIndex  == null){
             return 0L;
