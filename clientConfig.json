@@ -44,25 +44,18 @@
     ]
   },
   {
-    "clientId": "5b54a571a09c73aa5daf25ac",
+    "clientId": "file2.ddd",
     "fileName": "file2",
     "delimiter": "|",
     "fileFormat": "DELIMIED",
     "clientConfigColumns": [
       {
         "columnName": "cusip",
-        "beginIndex": 1,
-        "endIndex": 5
-      },
-      {
-        "columnName": "balance",
         "beginIndex": 3,
-        "endIndex": 6
-      },
-      {
-        "columnName": "abc",
-        "beginIndex": null,
-        "endIndex": null
+        "endIndex": null,
+        "useDefault" : false,
+        "metaFlag": false,
+        "value": null
       }
     ]
   },
@@ -75,12 +68,18 @@
       {
         "columnName": "balance",
         "beginIndex": 2,
-        "endIndex": null
+        "endIndex": null,
+        "useDefault" : false,
+        "metaFlag": false,
+        "value": null
       },
       {
         "columnName": "cusip",
         "beginIndex": 3,
-        "endIndex": null
+        "endIndex": null,
+        "useDefault" : false,
+        "metaFlag": false,
+        "value": null
       }
     ]
   }

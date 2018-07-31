@@ -39,7 +39,10 @@
             <to uri="bean:mailCamel?method=toString"></to>
             <log message="mailCamel log ${body}"/>
         </route>
+        .to(String.format("file://data_target?fileName=${header.%s}", ConfigConstants.CAMEL_HEADERS.FILENAME_ONLY) )
         -->
+
+
 
     </camelContext>
 

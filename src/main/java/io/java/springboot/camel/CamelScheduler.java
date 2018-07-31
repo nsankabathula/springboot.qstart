@@ -2,13 +2,25 @@ package io.java.springboot.camel;
 
 import io.java.springboot.config.ConfigConstants;
 import io.java.springboot.config.ConfigService;
+import io.java.springboot.parser.CSVDataFormatter;
+import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.dataformat.csv.CsvDataFormat;
+import org.apache.camel.model.DataFormatDefinition;
+import org.apache.camel.spi.DataFormat;
+import org.apache.commons.csv.CSVStrategy;
 import org.apache.commons.csv.writer.CSVConfig;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.io.InputStream;
+import java.io.OutputStream;
 
 @Component
 public class CamelScheduler extends RouteBuilder{
+
+    @Autowired
+    ConfigService configService;
 
     @Override
     public void configure() throws Exception {
@@ -44,28 +56,38 @@ public class CamelScheduler extends RouteBuilder{
 
         from ("direct:FixedLengthFileParser")
                 .routeId(String.format( "%s.fixedLengthParser", name))
-                .processRef("fixedLengthParser")
-                //.log("FixedLengthFileParser: ${body}")
+               .processRef("fixedLengthParser")
+                .log("fixedLengthParser: ${body}")
                 .to("direct:CsvMarshal")
                 .end();
 
         from ("direct:DelimitedFileParser")
                 .routeId(String.format( "%s.delimitedFileParser", name))
-                //.processRef("delimitedFileParser")
-                .to("log:DelimitedFileParser")
-                //.to ("direct:CsvMarshal")
+                .processRef("delimitedFileParser")
+                //.log(String.format("delimitedFileParser: ${body}"))
+                .to ("direct:CsvMarshal")
                 .end();
 
-        CsvDataFormat csv = new CsvDataFormat();
+        CsvDataFormat csvMarshal = new CsvDataFormat();
         CSVConfig config = new CSVConfig();
         config.setDelimiter(',');
-        System.out.println(csv.getStrategy());
-        csv.setConfig(config);
+        csvMarshal.setAutogenColumns(true);
+        CSVStrategy csvStrategy = csvMarshal.getStrategy();
+                System.out.println(csvStrategy.getEscape());
+        System.out.println(csvStrategy.getEncapsulator());
+
+        csvMarshal.setConfig(config);
+
 
         from ("direct:CsvMarshal")
-                .routeId(name + ".csvMarshal")
+                .routeId(String.format( "%s.csvMarshal", name))
                 .delay(10)
-                .marshal(csv)
+                .log(String.format("csvMarshal: ${body}"))
+                //.to("dataformat:csv:marshal?delimiter=${header.FIELD_DELIMITER}")
+                .marshal(new CSVDataFormatter())
+
+
+                //.marshal(new CsvDataFormat())
                 //.convertBodyTo(String.class)
                 .to(String.format("file://data_target?fileName=${header.%s}", ConfigConstants.CAMEL_HEADERS.FILENAME_ONLY) )
                 //<to uri="file:/home/user/?fileName=abc.csv"/>

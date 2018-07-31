@@ -22,7 +22,10 @@ public class ConfigProcessor implements ICamelProcessor {
         //exchange.getIn().setHeader("config", config);
         exchange.getIn().setHeader(ConfigConstants.CAMEL_HEADERS.IS_FIXED_LENGTH_FILE, config.isFixed());
         exchange.getIn().setHeader(ConfigConstants.CAMEL_HEADERS.IS_DELIMITED_LENGTH_FILE, config.isDelimited());
-        exchange.getIn().setBody(config, ClientConfig.class);
+
+        exchange.getIn().setHeader(ConfigConstants.CAMEL_HEADERS.FIELD_DELIMITER, '|');
+        //exchange.getIn().setHeader(ConfigConstants.CAMEL_HEADERS.FILE_CONFIG, config);
+        exchange.getIn().setBody(config);
         //exchange.getIn().setBody(config.isFixed());
 
     }

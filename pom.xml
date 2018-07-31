@@ -67,14 +67,21 @@
             <artifactId>ews-java-api</artifactId>
             <version>2.0</version>
         </dependency>
-<!--
 
         <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-xml</artifactId>
-            <version>2.9.0</version>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>1.5</version>
         </dependency>
--->
+
+        <!--
+
+                <dependency>
+                    <groupId>com.fasterxml.jackson.dataformat</groupId>
+                    <artifactId>jackson-dataformat-xml</artifactId>
+                    <version>2.9.0</version>
+                </dependency>
+        -->
         <!-- spring oxm -->
         <dependency>
             <groupId>org.springframework</groupId>

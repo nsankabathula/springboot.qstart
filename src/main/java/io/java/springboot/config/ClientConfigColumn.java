@@ -36,6 +36,21 @@ public class ClientConfigColumn {
     @XmlTransient
     Boolean metaFlag;
 
+    @XmlTransient
+    int colIndex;
+
+    public int getColIndex() {
+        return colIndex;
+    }
+
+    public void setColIndex(int colIndex) {
+        this.colIndex = colIndex;
+    }
+
+
+
+
+
     public Boolean getMetaFlag() {
         return metaFlag;
     }
@@ -96,7 +111,7 @@ public class ClientConfigColumn {
     }
 
     public boolean expectedFromSource(){
-        return beginIndex!= null && endIndex != null;
+        return beginIndex!= null ;//&& endIndex != null;
     }
 
     @XmlAttribute(name = "length")

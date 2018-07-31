@@ -47,7 +47,7 @@ public class ClientConfig {
 
     public String writeConfigToFile(IConvertor xmlConverter, String configFileName ) throws IOException{
         configFileName = (configFileName != null || configFileName.length()>0)? configFileName : getConfigFileName();
-        xmlConverter.convertFromObjectToXML(new ClientConfigColumns(getClientConfigColumnsForXML()), configFileName);
+        xmlConverter.convertFromObjectToXML(new ClientConfigColumns(getFixedLengthClientConfigColumnsForXML()), configFileName);
 
         System.out.println(configFileName);
         return configFileName;
@@ -128,12 +128,48 @@ public class ClientConfig {
         this.fileName = fileName;
     }
 
-    public List<ClientConfigColumn> getClientConfigColumnsForXML(){
-        return ClientConfig.getClientConfigColumnsForXML(getClientConfigColumns());
+    public List<ClientConfigColumn> getFixedLengthClientConfigColumnsForXML(){
+        if(isFixed())
+            return ClientConfig.getFixedLengthClientConfigColumnsForXML(getClientConfigColumns());
+        else if(isDelimited())
+            return ClientConfig.getDelimitedClientConfigColumnsForXML(getClientConfigColumns());
+        else
+            throw new UnsupportedOperationException("Not supported yet");
     }
 
+    public static final List<ClientConfigColumn> getDelimitedClientConfigColumnsForXML(List<ClientConfigColumn> clientConfigColumns) {
+        ArrayList<ClientConfigColumn> result =  (ArrayList<ClientConfigColumn>)clientConfigColumns.stream().filter(clientConfigColumn -> clientConfigColumn.expectedFromSource()).collect(Collectors.toList());
+        result.sort(Comparator.comparing(ClientConfigColumn::getBeginIndex));
+        ArrayList<ClientConfigColumn> sourceColumns = new ArrayList<>();
+        for (int  curr_idx = 0, prev_idx = curr_idx - 1  ; curr_idx < result.size(); curr_idx ++, prev_idx++ ) {
+            Long runDummyLoop = 0L;
 
-    public static final List<ClientConfigColumn> getClientConfigColumnsForXML(List<ClientConfigColumn> clientConfigColumns){
+            ClientConfigColumn currentConfig = result.get(curr_idx);
+            if(prev_idx == -1){
+                runDummyLoop = (currentConfig.getBeginIndex()>1L)?  currentConfig.getBeginIndex(): 1L;
+            }
+            else{
+                //ClientConfigColumn prevConfig = result.get(prev_idx);
+                runDummyLoop = currentConfig.getBeginIndex() - sourceColumns.size();
+            }
+
+
+
+            for(int i =0; i < runDummyLoop ; i++ ){
+                ClientConfigColumn dummy = new ClientConfigColumn();
+                dummy.setColumnName("dummy_" + curr_idx + "_" + i);
+                dummy.setColIndex(sourceColumns.size());
+                sourceColumns.add(dummy);
+            }
+            currentConfig.setColIndex(sourceColumns.size());
+            sourceColumns.add(currentConfig);
+
+        }
+
+        return sourceColumns;
+    }
+
+    public static final List<ClientConfigColumn> getFixedLengthClientConfigColumnsForXML(List<ClientConfigColumn> clientConfigColumns){
         ArrayList<ClientConfigColumn> result =  (ArrayList<ClientConfigColumn>)clientConfigColumns.stream().filter(clientConfigColumn -> clientConfigColumn.expectedFromSource()).collect(Collectors.toList());
         result.sort(Comparator.comparing(ClientConfigColumn::getBeginIndex));
         ArrayList<ClientConfigColumn> sourceColumns = new ArrayList<>();
@@ -160,7 +196,7 @@ public class ClientConfig {
             sourceColumns.add(currentConfig);
         }
 
-        //System.out.println("getClientConfigColumnsForXML %s".format(sourceColumns.toString()));
+        //System.out.println("getFixedLengthClientConfigColumnsForXML %s".format(sourceColumns.toString()));
         return sourceColumns;
 
     }
@@ -176,7 +212,7 @@ public class ClientConfig {
     public static final ClientConfig filterByStartsWith(List<ClientConfig> clientConfigs, String startsWith){
         List<ClientConfig>  configs = clientConfigs.stream().filter(config -> startsWith.startsWith(config.getFileName()))
                 .collect(Collectors.toList());
-        ClientConfig.getClientConfigColumnsForXML(configs.get(0).getClientConfigColumns());
+        //ClientConfig.getFixedLengthClientConfigColumnsForXML(configs.get(0).getClientConfigColumns());
         return configs.get(0) ;
     }
 

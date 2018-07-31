@@ -1,5 +1,6 @@
 package io.java.springboot.parser;
 
+import io.java.springboot.camel.ICamelProcessor;
 import io.java.springboot.config.ClientConfig;
 import io.java.springboot.config.ClientConfigColumn;
 import io.java.springboot.config.ConfigConstants;
@@ -21,41 +22,18 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class FixedLengthParser implements Processor, IParser{
+public class FixedLengthParser implements IParser {
 
-    @Override
+/*    @Override
     public void process(Exchange exchange) throws Exception {
-        //System.out.println("in FixedLengthParser " );
-        //System.out.println(exchange.getIn().getBody()) ;
-        //System.out.println(exchange.getIn().getHeaders()) ;
 
         ClientConfig clientConfig = (ClientConfig)exchange.getIn().getBody();
-        File fileMapping = new File(clientConfig.getConfigFileName());
+        //File fileMapping = new File(clientConfig.getConfigFileName());
         exchange.getIn().setBody(parse( exchange.getIn().getHeader(ConfigConstants.CAMEL_HEADERS.FILE_ABSLOUTE_PATH).toString(), clientConfig));
 
 
-        //FlatpackDataFormat fp = new FlatpackDataFormat();
-        //fp.setDefinition();
-        /*
-        System.out.println(new ClassPathResource("fixed-length.pzmap.xml").getFile() + "{}" +  exchange.getIn().getHeader("CamelFileAbsolutePath").toString());
-        String fileName = exchange.getIn().getHeader("CamelFileNameOnly").toString();
-        ClientConfig config = ClientConfig.filterByStartsWith(ClientConfig.getDefaultConfig(), fileName) ;
-
-        System.out.println(fileMapping.getPath());
-
-        call( fileMapping, exchange.getIn().getHeader("CamelFileAbsolutePath").toString());
-        */
-        /*
-
-        System.out.println(exchange.getIn().getHeaders()); //CamelFileAbsolutePath
-        String myString = exchange.getIn().getBody(String.class);
-        //System.out.println(" data " + myString);
-        ClientConfig config = ClientConfig.filterByStartsWith(ClientConfig.getDefaultConfig(), fileName) ;
-        //System.out.println(config);
-        exchange.getIn().setBody(myString);
-        */
     }
-
+*/
     public List<Map<String, Object>> parse(final String filePath, ClientConfig clientConfig) throws Exception {
         List<Map<String, Object>> fileData = new ArrayList<>();
         final Parser pzparser = DefaultParserFactory.getInstance().newFixedLengthParser(new FileReader(clientConfig.getConfigFileName()), new FileReader(filePath));
