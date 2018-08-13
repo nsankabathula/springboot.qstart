@@ -122,7 +122,7 @@ public class CamelController  {
         }
     }
 
-    /*
+
 
     @PutMapping("/{route}/start")
     public ResponseEntity<?> start(@PathVariable("route") String route) {
@@ -131,7 +131,8 @@ public class CamelController  {
             System.out.println("camelContext start " + route + " " + camelContext.getRouteStatus(route) );
             if (camelContext.getRouteStatus(route).isStopped()) {
                 System.out.println("Starting route" + route);
-                camelContext.getRoute(route).getEndpoint().start();
+                //camelContext.getRoute(route).getEndpoint().start();
+                camelContext.startRoute(route);
                 //producerTemplate.sendBody(camelContext.getRoute(route).getEndpoint(),"start");
                 return ResponseEntity.status(HttpStatus.ACCEPTED).body(camelContext.getRouteStatus(route));
             } else {
@@ -151,7 +152,7 @@ public class CamelController  {
         try{
         CamelContext camelContext =  producerTemplate.getCamelContext();
         if(camelContext.getRouteStatus(route).isStoppable()){
-            camelContext.getRoute(route).getEndpoint().stop();
+            camelContext.stopRoute(route);
             return ResponseEntity.status(HttpStatus.ACCEPTED).body(camelContext.getRouteStatus(route));
         }
         else
@@ -165,6 +166,6 @@ public class CamelController  {
     }
 
     }
-    */
+
 
 }
