@@ -55,7 +55,7 @@ public class DelimitedFileParser implements IParser {
 
 
         List<Map<String, Object>> fileData = new ArrayList<>();
-        final BuffReaderDelimParser pzparser = (BuffReaderDelimParser)  BuffReaderParseFactory.getInstance().newDelimitedParser(new FileReader(clientConfig.getConfigFileName()), new FileReader(filePath), clientConfig.getDelimiter().charAt(0),'"',false);
+        final BuffReaderDelimParser pzparser = (BuffReaderDelimParser)  BuffReaderParseFactory.getInstance().newDelimitedParser(new FileReader(clientConfig.getConfigFileName()), new FileReader(filePath), clientConfig.getDelimiter(),'"',false);
 
         pzparser.setIgnoreExtraColumns(true);
         pzparser.setFlagEmptyRows(true);

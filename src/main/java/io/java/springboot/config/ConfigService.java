@@ -159,7 +159,7 @@ public class ConfigService  {
 
         CsvDataFormat csvFileConfig = new CsvDataFormat();
         CSVConfig csvConfig = new CSVConfig();
-        csvConfig.setDelimiter(clientConfig.getDelimiter().charAt(0));
+        csvConfig.setDelimiter(clientConfig.getDelimiter());
         CSVStrategy strategy =csvFileConfig.getStrategy();
         strategy.setEscape('"');
 

@@ -31,10 +31,10 @@ public class CamelScheduler extends RouteBuilder{
                 .routeId(String.format( "%s.configBuiilder", name))
                 .tracing()
                 .bean(ConfigService.class, "writeAllConfigs")
+
                 //.log("file ${header}")
                 //.to("direct:fileWatcher")
                 .end();
-
 
         //from("direct:fileWatcher").
                 from("file://data?noop=true").noAutoStartup()

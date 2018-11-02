@@ -29,7 +29,7 @@ public class ClientConfig {
     String clientId;
     String fileName;
     String fileFormat;
-    String delimiter;
+    Character delimiter;
 
     List<ClientConfigColumn> clientConfigColumns;
 
@@ -104,11 +104,11 @@ public class ClientConfig {
         this.clientId = clientId;
     }
 
-    public String getDelimiter() {
+    public Character getDelimiter() {
         return delimiter;
     }
 
-    public void setDelimiter(String delimiter) {
+    public void setDelimiter(Character delimiter) {
         this.delimiter = delimiter;
     }
 
